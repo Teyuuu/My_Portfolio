@@ -1,176 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Timothy Villa | Computer Science Graduate</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Timothy Villa - Computer Science Graduate | Full-Stack Web Developer | IoT & Automation Specialist" />
+  <title>Timothy Villa | Computer Science Graduate & Web Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     :root {
-      --primary-color: #1a1a2e;
-      --secondary-color: #16213e;
-      --accent-color: #0f4c75;
-      --highlight-color: #3282b8;
-      --text-light: #e94560;
-      --text-white: #ffffff;
-      --bg-dark: #0f0f23;
-      --bg-card: rgba(255, 255, 255, 0.05);
-      --gradient-primary: linear-gradient(135deg, #1a1a2e, #16213e, #0f4c75);
+      --primary: #1a1a2e;
+      --secondary: #16213e;
+      --accent: #0f4c75;
+      --highlight: #3282b8;
+      --pink: #e94560;
+      --text: #ffffff;
+      --bg: #0f0f23;
+      --card: rgba(255, 255, 255, 0.05);
+      --gradient: linear-gradient(135deg, #1a1a2e, #16213e);
       --gradient-accent: linear-gradient(45deg, #3282b8, #e94560);
     }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-white);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* Animated background particles */
     .bg-animation {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--gradient);
       z-index: -1;
-      background: var(--gradient-primary);
     }
 
     .particle {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background: var(--highlight-color);
+      width: 4px; height: 4px;
+      background: var(--highlight);
       border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
-      opacity: 0.7;
+      animation: float 8s infinite ease-in-out;
+      opacity: 0.6;
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(180deg); }
     }
 
-    /* Header Styles */
     header {
-      position: relative;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: var(--gradient-primary);
-      overflow: hidden;
+      padding: 2rem;
+      position: relative;
     }
 
-    .hero-content {
-      z-index: 2;
-      animation: fadeInUp 1s ease-out;
-    }
+    .hero-content { max-width: 900px; z-index: 2; }
 
     .profile-image {
-      width: 180px;
-      height: 180px;
+      width: 180px; height: 180px;
       border-radius: 50%;
-      border: 4px solid var(--text-white);
       object-fit: cover;
-      margin-bottom: 2rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      animation: profileGlow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes profileGlow {
-      0% { box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 0 rgba(50, 130, 184, 0.4); }
-      100% { box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 20px rgba(50, 130, 184, 0); }
+      border: 5px solid var(--text);
+      box-shadow: 0 0 30px rgba(50, 130, 184, 0.4);
+      margin-bottom: 1.5rem;
     }
 
     .hero-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 800;
       background: var(--gradient-accent);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
     }
 
-    .hero-subtitle {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .hero-subtitle { font-size: 1.4rem; opacity: 0.9; margin-bottom: 2rem; }
 
     .btn {
+      display: inline-block;
       padding: 1rem 2rem;
-      border: none;
+      margin: 0.5rem;
       border-radius: 50px;
-      font-weight: 600;
       text-decoration: none;
+      font-weight: 600;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
 
-    .btn-primary {
-      background: var(--gradient-accent);
-      color: var(--text-white);
-    }
+    .btn-primary { background: var(--gradient-accent); color: white; }
+    .btn-outline { border: 2px solid var(--highlight); color: var(--text); }
+    .btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
 
-    .btn-outline {
-      background: transparent;
-      color: var(--text-white);
-      border: 2px solid var(--highlight-color);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
-
-    /* Sticky Navigation */
+    /* Navigation */
     .sticky-nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; width: 100%;
       background: rgba(26, 26, 46, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 1rem 2rem;
+      backdrop-filter: blur(12px);
       z-index: 1000;
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
-    }
-
-    .sticky-nav.visible {
-      transform: translateY(0);
+      padding: 1rem 0;
+      transition: all 0.3s;
     }
 
     .nav-content {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .nav-logo {
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
+    .nav-logo { font-weight: 700; font-size: 1.3rem; }
 
     .nav-links {
       display: flex;
@@ -179,32 +127,37 @@
     }
 
     .nav-links a {
-      color: var(--text-white);
+      color: var(--text);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
     }
 
-    .nav-links a:hover {
-      color: var(--highlight-color);
+    .nav-links a:hover { color: var(--highlight); }
+
+    .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--text); }
+
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background: rgba(26, 26, 46, 0.98);
+        flex-direction: column;
+        padding: 1rem 0;
+        transform: translateY(-150%);
+        transition: transform 0.4s ease;
+      }
+      .nav-links.active { transform: translateY(0); }
+      .nav-links li { text-align: center; padding: 0.8rem 0; }
     }
 
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Sections */
-    section {
-      padding: 5rem 0;
-      position: relative;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
 
     .section-title {
-      font-size: 2.5rem;
       text-align: center;
+      font-size: 2.5rem;
       margin-bottom: 3rem;
       background: var(--gradient-accent);
       -webkit-background-clip: text;
@@ -212,54 +165,54 @@
       background-clip: text;
     }
 
-    /* About Section */
+    /* About */
     .about-content {
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
     }
 
-    .about-text {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
+    .about-text { font-size: 1.1rem; opacity: 0.9; line-height: 1.8; }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.2rem;
     }
 
-    .skill-item {
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
-      padding: 1rem;
-      border-radius: 12px;
+    .skill-category {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      transition: all 0.3s;
     }
 
-    .skill-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--highlight-color);
+    .skill-category:hover {
+      transform: translateY(-8px);
+      border-color: var(--highlight);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    /* Projects Section */
+    .skill-category h4 { margin: 1rem 0 0.8rem; color: var(--highlight); }
+    .skill-category ul { list-style: none; font-size: 0.9rem; opacity: 0.8; }
+    .skill-category li { margin: 0.4rem 0; }
+
+    /* Projects */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
 
     .project-card {
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
+      background: var(--card);
       border-radius: 20px;
       padding: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.4s;
       position: relative;
       overflow: hidden;
     }
@@ -267,93 +220,56 @@
     .project-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
+      top: 0; left: 0; right: 0;
+      height: 5px;
       background: var(--gradient-accent);
     }
 
     .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      border-color: var(--highlight-color);
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-color: var(--highlight);
     }
 
     .project-title {
       font-size: 1.4rem;
       margin-bottom: 1rem;
-      color: var(--text-light);
-    }
-
-    .project-description {
-      margin-bottom: 1.5rem;
-      opacity: 0.9;
+      color: var(--pink);
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 1.5rem;
+      margin: 1rem 0;
     }
 
     .tech-tag {
       background: rgba(50, 130, 184, 0.2);
-      color: var(--highlight-color);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
+      color: var(--highlight);
+      padding: 0.4rem 0.9rem;
+      border-radius: 30px;
       font-size: 0.8rem;
-      border: 1px solid var(--highlight-color);
+      border: 1px solid var(--highlight);
     }
 
-    .project-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .project-link {
-      color: var(--highlight-color);
+    .project-links a {
+      color: var(--highlight);
       text-decoration: none;
       font-weight: 500;
-      transition: all 0.3s ease;
+      margin-right: 1rem;
     }
 
-    .project-link:hover {
-      color: var(--text-light);
-      transform: translateX(5px);
-    }
+    .project-links a:hover { color: var(--pink); }
 
-    /* Resume Section */
     .resume-section {
       text-align: center;
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
+      background: var(--card);
       border-radius: 20px;
       padding: 4rem 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    .resume-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--gradient-accent);
-      color: var(--text-white);
-      padding: 1.2rem 2.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-    }
-
-    .resume-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-
-    /* Contact Section */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -361,121 +277,52 @@
     }
 
     .contact-item {
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
+      background: var(--card);
       padding: 2rem;
-      border-radius: 20px;
+      border-radius: 16px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
     }
 
     .contact-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--highlight-color);
+      transform: translateY(-8px);
+      border-color: var(--highlight);
     }
 
-    .contact-icon {
-      font-size: 2rem;
+    .contact-item i {
+      font-size: 2.5rem;
+      color: var(--highlight);
       margin-bottom: 1rem;
-      color: var(--highlight-color);
     }
 
-    .contact-item a {
-      color: var(--text-white);
-      text-decoration: none;
-    }
-
-    .contact-item a:hover {
-      color: var(--highlight-color);
-    }
-
-    /* Footer */
     footer {
-      background: var(--primary-color);
       text-align: center;
-      padding: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem 0;
+      background: var(--primary);
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-
-    /* Responsive Design */
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.5rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-
-      .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
+      .about-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-subtitle { font-size: 1.2rem; }
+      .section-title { font-size: 2.2rem; }
     }
 
-    /* Scroll indicator */
-    .scroll-indicator {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      z-index: 1001;
-    }
-
-    .scroll-progress {
-      height: 100%;
-      background: var(--gradient-accent);
-      width: 0%;
-      transition: width 0.1s ease;
+    @media (max-width: 480px) {
+      .btn { display: block; width: 80%; margin: 0.8rem auto; }
     }
   </style>
 </head>
 <body>
-  <!-- Scroll Indicator -->
-  <div class="scroll-indicator">
-    <div class="scroll-progress" id="scrollProgress"></div>
-  </div>
 
-  <!-- Animated Background -->
   <div class="bg-animation" id="bgAnimation"></div>
 
-  <!-- Sticky Navigation -->
-  <nav class="sticky-nav" id="stickyNav">
+  <nav class="sticky-nav">
     <div class="nav-content">
       <div class="nav-logo">Timothy Villa</div>
-      <ul class="nav-links">
+      <div class="hamburger" id="hamburger">Menu</div>
+      <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#resume">Resume</a></li>
@@ -484,108 +331,208 @@
     </div>
   </nav>
 
-  <!-- Header -->
   <header>
     <div class="hero-content">
-      <img src="TIM.jpg" alt="Timothy Villa" class="profile-image">
+      <img src="TIM.jpg" alt="Timothy Villa" class="profile-image" onerror="this.src='https://via.placeholder.com/180?text=TV'" />
       <h1 class="hero-title">Timothy Villa</h1>
-      <p class="hero-subtitle">Computer Science Graduate | Junior Developer</p>
-      <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
+      <p class="hero-subtitle">Computer Science Graduate • Full-Stack Developer • IoT & Automation Enthusiast</p>
+      <div>
+        <a href="#projects" class="btn btn-primary">View My Work</a>
         <a href="#contact" class="btn btn-outline">Get In Touch</a>
       </div>
     </div>
   </header>
 
-  <!-- About Section -->
   <section id="about">
     <div class="container">
       <h2 class="section-title">About Me</h2>
       <div class="about-content">
         <div class="skills-grid">
-          <div class="skill-item">
-            <div class="contact-icon">💻</div>
-            <strong>Python</strong>
+          <div class="skill-category">
+            <h4>Frontend</h4>
+            <ul>
+              <li>HTML5 / CSS3</li>
+              <li>JavaScript / TypeScript</li>
+              <li>Bootstrap</li>
+              <li>SweetAlert</li>
+            </ul>
           </div>
-          <div class="skill-item">
-            <div class="contact-icon">🌐</div>
-            <strong>JavaScript</strong>
+          <div class="skill-category">
+            <h4>Backend</h4>
+            <ul>
+              <li>Python (Flask)</li>
+              <li>PHP (Laravel)</li>
+              <li>MySQL / Supabase / SQLite</li>
+              <li>Git & GitHub</li>
+            </ul>
           </div>
-          <div class="skill-item">
-            <div class="contact-icon">🗄️</div>
-            <strong>MySQL</strong>
+          <div class="skill-category">
+            <h4>DevOps & Tools</h4>
+            <ul>
+              <li>Server Setup (VM, SSH)</li>
+              <li>Android Studio</li>
+              <li>IoT (Arduino, NodeMCU)</li>
+              <li>Excel Automation</li>
+            </ul>
           </div>
-          <div class="skill-item">
-            <div class="contact-icon">🔧</div>
-            <strong>Arduino</strong>
-          </div>
-          <div class="skill-item">
-            <div class="contact-icon">📊</div>
-            <strong>Excel</strong>
-          </div>
-          <div class="skill-item">
-            <div class="contact-icon">🎨</div>
-            <strong>Design</strong>
+          <div class="skill-category">
+            <h4>Design & Media</h4>
+            <ul>
+              <li>Canva / Adobe Express</li>
+              <li>CapCut Video Editing</li>
+              <li>Brand Identity</li>
+            </ul>
           </div>
         </div>
+
         <div class="about-text">
-          <p>I'm a Computer Science graduate with a passion for software development, problem solving, and building real-world tech solutions. My expertise spans across web development, IoT systems, and database management.</p>
-          <br>
-          <p>I specialize in creating dashboard systems, automation solutions, and IoT integrations. Beyond coding, I also work on database creation, design projects, and multimedia presentations for various organizations and clients.</p>
-          <br>
-          <p>I'm constantly learning new technologies and enjoy tackling complex challenges that require innovative solutions.</p>
+          <p>I'm a passionate Computer Science graduate with hands-on experience in building full-stack web applications, IoT systems, and automation tools.</p>
+          <p>I specialize in creating intuitive dashboards, e-commerce platforms, church management systems, and real-time monitoring solutions. My projects range from smart aquaponics systems to internal business tools used by organizations.</p>
+          <p>Always learning, always building — I thrive on solving real-world problems with clean, efficient code and creative design.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
   <section id="projects">
     <div class="container">
-      <h2 class="section-title">Featured Projects</h2>
+      <h2 class="section-title">All Projects</h2>
       <div class="projects-grid">
+
         <div class="project-card">
-          <h3 class="project-title">Smart Aquaponics System</h3>
-          <p class="project-description">College thesis project featuring an IoT-based aquaponics system that automates water flow, monitors environmental conditions, and provides real-time data visualization through a mobile dashboard.</p>
+          <h3 class="project-title">Church Website with Academy & Bible College</h3>
+          <p class="project-description">Complete internal web system linking main church site with academy and college portals.</p>
           <div class="tech-stack">
-            <span class="tech-tag">Arduino</span>
-            <span class="tech-tag">NodeMCU</span>
-            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">HTML/CSS</span>
             <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Blynk</span>
+            <span class="tech-tag">Google Embed</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/Teyuuu/aquaponics-system" target="_blank" class="project-link">View Code →</a>
+            <a href="https://github.com/howitdoit/bbbcmolino" target="_blank">Code</a>
+            <a href="http://bbbcmolino.org" target="_blank">Live Site</a>
           </div>
         </div>
 
         <div class="project-card">
-          <h3 class="project-title">CAMTS Web Application</h3>
-          <p class="project-description">Complete internal web application for business management including real-time dashboards, inventory tracking, and automated financial reporting system.</p>
+          <h3 class="project-title">Canvas & Cotton E-commerce</h3>
+          <p class="project-description">Full t-shirt business platform with inventory, real-time dashboard, and automated reporting.</p>
           <div class="tech-stack">
             <span class="tech-tag">HTML/CSS</span>
             <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Supabase</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Teyuuu/Tshirt-ecommerce" target="_blank">Code</a>
+            <a href="https://canvasandcotton.netlify.app" target="_blank">Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Bacoor QR Generator System</h3>
+          <p class="project-description">Internal web system for generating and managing QR codes for city services.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Blade</span>
+            <span class="tech-tag">Laravel</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Dashotz/bacoor-qr-gerenator" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Emergency Contacts System</h3>
+          <p class="project-description">Web system with vCard integration for emergency contact management.</p>
+          <div class="tech-stack">
             <span class="tech-tag">PHP</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Teyuuu/emergency-contacts" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Alerts Front-End Template</h3>
+          <p class="project-description">Mobile-first alert system template with tracking and responsive design.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Teyuuu/alerts" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">CJP Food & Delicacies</h3>
+          <p class="project-description">E-commerce site for food business with menu, inventory, and automated ordering.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Teyuuu/Food-repo" target="_blank">Code</a>
+            <a href="https://cjpfoodsdelicacies.netlify.app" target="_blank">Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Bacoor Online Services</h3>
+          <p class="project-description">Public service portal providing accessible online government services.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Blade</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Dashotz/bacoor-online-services" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">CAMTS POS System</h3>
+          <p class="project-description">Point-of-sale and inventory system with real-time reporting.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">MySQL</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/Teyuuu/camts-webapp" target="_blank" class="project-link">View Code →</a>
+            <a href="https://github.com/Teyuuu/CAMTS-static" target="_blank">Code</a>
+            <a href="https://camts-pos.netlify.app" target="_blank">Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Smart Aquaponics System (Thesis)</h3>
+          <p class="project-description">IoT-based aquaponics automation with real-time monitoring and mobile dashboard.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Arduino</span>
+            <span class="tech-tag">NodeMCU</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Blynk</span>
+          </div>
+          <div class="project-links">
+            <a href="#">Thesis Project</a>
           </div>
         </div>
 
         <div class="project-card">
           <h3 class="project-title">Church Registry Database</h3>
-          <p class="project-description">Comprehensive database system for managing church membership records, baptism tracking, and attendance monitoring with automated reporting features.</p>
+          <p class="project-description">Excel-based membership, baptism, and attendance tracking system.</p>
           <div class="tech-stack">
             <span class="tech-tag">Microsoft Excel</span>
-            <span class="tech-tag">Formulas</span>
+            <span class="tech-tag">Advanced Formulas</span>
             <span class="tech-tag">Data Validation</span>
           </div>
         </div>
 
         <div class="project-card">
           <h3 class="project-title">Multimedia & Design Portfolio</h3>
-          <p class="project-description">Created engaging video presentations, educational content, and visual materials for church events and organizations, along with professional graphic design work.</p>
+          <p class="project-description">Video presentations, educational content, and visual materials for events.</p>
           <div class="tech-stack">
             <span class="tech-tag">PowerPoint</span>
             <span class="tech-tag">CapCut</span>
@@ -595,49 +542,47 @@
 
         <div class="project-card">
           <h3 class="project-title">Brand Identity Design</h3>
-          <p class="project-description">Professional graphic design services including logo creation, corporate identity materials, business cards, and letterhead designs for various clients and businesses.</p>
+          <p class="project-description">Logo design, business cards, and corporate identity packages.</p>
           <div class="tech-stack">
             <span class="tech-tag">Canva</span>
             <span class="tech-tag">Adobe Express</span>
             <span class="tech-tag">GIMP</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Resume Section -->
   <section id="resume">
     <div class="container">
       <div class="resume-section">
         <h2 class="section-title">Resume</h2>
-        <p style="margin-bottom: 2rem; opacity: 0.9;">Download my complete resume to learn more about my experience and qualifications.</p>
-        <a href="VILLA-CV.pdf" target="_blank" class="resume-btn">
-          📄 Download Resume
-        </a>
+        <p>Download my full resume for detailed experience and qualifications.</p>
+        <br>
+        <a href="VILLA-CV.pdf" target="_blank" class="btn btn-primary">Download Resume (PDF)</a>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact">
     <div class="container">
       <h2 class="section-title">Let's Connect</h2>
       <div class="contact-grid">
         <div class="contact-item">
-          <div class="contact-icon">📧</div>
+          <i class="fas fa-envelope"></i>
           <h3>Email</h3>
           <a href="mailto:terezavilla70@gmail.com">terezavilla70@gmail.com</a>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">💼</div>
+          <i class="fab fa-linkedin"></i>
           <h3>LinkedIn</h3>
-          <a href="https://www.linkedin.com/in/timothy-villa-b06450280/" target="_blank">Connect with me</a>
+          <a href="https://www.linkedin.com/in/timothy-villa-b06450280/" target="_blank">linkedin.com/in/timothy-villa</a>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">💻</div>
+          <i class="fab fa-github"></i>
           <h3>GitHub</h3>
-          <a href="https://github.com/Teyuuu" target="_blank">View my code</a>
+          <a href="https://github.com/Teyuuu" target="_blank">github.com/Teyuuu</a>
         </div>
       </div>
     </div>
@@ -645,106 +590,41 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Timothy Villa. Crafted with passion and code.</p>
+      <p>© 2025 Timothy Villa. Built with passion and code.</p>
     </div>
   </footer>
 
   <script>
-    // Create floating particles
+    // Particles
     function createParticles() {
-      const bgAnimation = document.getElementById('bgAnimation');
-      const particleCount = 50;
-
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 6 + 's';
-        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        bgAnimation.appendChild(particle);
+      const container = document.getElementById('bgAnimation');
+      for (let i = 0; i < 60; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 8 + 's';
+        container.appendChild(p);
       }
     }
 
-    // Sticky navigation
-    function handleStickyNav() {
-      const stickyNav = document.getElementById('stickyNav');
-      const scrollY = window.scrollY;
+    // Mobile Menu
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
 
-      if (scrollY > window.innerHeight * 0.8) {
-        stickyNav.classList.add('visible');
-      } else {
-        stickyNav.classList.remove('visible');
-      }
-    }
-
-    // Scroll progress
-    function updateScrollProgress() {
-      const scrollProgress = document.getElementById('scrollProgress');
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = (scrollTop / scrollHeight) * 100;
-      scrollProgress.style.width = progress + '%';
-    }
-
-    // Smooth scrolling for navigation links
-    function initSmoothScrolling() {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
+    // Smooth Scrolling + Close Mobile Menu
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
-      });
-    }
-
-    // Intersection Observer for fade-in animations
-    function initFadeInAnimations() {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll('.project-card, .contact-item, .skill-item').forEach(el => {
-        observer.observe(el);
-      });
-    }
-
-    // Initialize everything
-    document.addEventListener('DOMContentLoaded', function() {
-      createParticles();
-      initSmoothScrolling();
-      initFadeInAnimations();
-
-      window.addEventListener('scroll', () => {
-        handleStickyNav();
-        updateScrollProgress();
+        document.getElementById('navLinks').classList.remove('active');
       });
     });
 
-    // Add some interactive hover effects
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
-      });
-      
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-      });
-    });
+    createParticles();
   </script>
 </body>
 </html>
