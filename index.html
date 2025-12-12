@@ -215,6 +215,11 @@
       transition: all 0.4s;
       position: relative;
       overflow: hidden;
+      display: none; /* Hidden by default, shown via JS */
+    }
+
+    .project-card.visible {
+      display: block;
     }
 
     .project-card::before {
@@ -230,6 +235,74 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
       border-color: var(--highlight);
     }
+
+    /* Carousel */
+    .project-carousel {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.4s ease;
+      height: 100%;
+    }
+
+    .carousel-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-carousel:hover .carousel-nav { opacity: 1; }
+
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dot.active { background: var(--highlight); }
 
     .project-title {
       font-size: 1.4rem;
@@ -261,6 +334,29 @@
     }
 
     .project-links a:hover { color: var(--pink); }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .page-btn {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .page-btn.active, .page-btn:hover {
+      background: var(--highlight);
+      border-color: var(--highlight);
+    }
 
     .resume-section {
       text-align: center;
@@ -307,6 +403,7 @@
       .about-content { grid-template-columns: 1fr; text-align: center; }
       .hero-subtitle { font-size: 1.2rem; }
       .section-title { font-size: 2.2rem; }
+      .project-carousel { height: 180px; }
     }
 
     @media (max-width: 480px) {
@@ -321,7 +418,7 @@
   <nav class="sticky-nav">
     <div class="nav-content">
       <div class="nav-logo">Timothy Villa</div>
-      <div class="hamburger" id="hamburger">Menu</div>
+      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -397,9 +494,16 @@
   <section id="projects">
     <div class="container">
       <h2 class="section-title">All Projects</h2>
-      <div class="projects-grid">
+      <div class="projects-grid" id="projectsGrid">
 
-        <div class="project-card">
+        <!-- Project 1 -->
+        <div class="project-card visible" data-images="https://via.placeholder.com/800x500/3282b8/ffffff?text=Church+Website+1,https://via.placeholder.com/800x500/3282b8/ffffff?text=Church+Website+2,https://via.placeholder.com/800x500/3282b8/ffffff?text=Church+Website+3">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Church Website with Academy & Bible College</h3>
           <p class="project-description">Complete internal web system linking main church site with academy and college portals.</p>
           <div class="tech-stack">
@@ -413,7 +517,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 2 -->
+        <div class="project-card visible" data-images="images/canvas/cc1.png,images/canvas/cc2.png,images/canvas/cc3.png,images/canvas/cc4.png,images/canvas/cc5.png,images/canvas/cc6.png,images/canvas/cc7.png,images/canvas/cc8.png,images/canvas/cc9.png,images/canvas/cc10.png">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Canvas & Cotton E-commerce</h3>
           <p class="project-description">Full t-shirt business platform with inventory, real-time dashboard, and automated reporting.</p>
           <div class="tech-stack">
@@ -428,7 +539,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 3 -->
+        <div class="project-card visible" data-images="https://via.placeholder.com/800x500/3282b8/ffffff?text=QR+Generator+1,https://via.placeholder.com/800x500/3282b8/ffffff?text=QR+Generator+2">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Bacoor QR Generator System</h3>
           <p class="project-description">Internal web system for generating and managing QR codes for city services.</p>
           <div class="tech-stack">
@@ -442,7 +560,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 4 -->
+        <div class="project-card visible" data-images="images/emergency/e1.png,images/emergency/e2.png,images/emergency/e3.png">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Emergency Contacts System</h3>
           <p class="project-description">Web system with vCard integration for emergency contact management.</p>
           <div class="tech-stack">
@@ -454,7 +579,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 5 -->
+        <div class="project-card visible" data-images="images/alerts/a1.png,images/alerts/a2.png,images/alerts/a3.png,images/alerts/a4.png,images/alerts/a5.png,images/alerts/a6.png,images/alerts/a7.png,images/alerts/a8.png,images/alerts/a9.png,images/alerts/a10.png,images/alerts/a11.png,images/alerts/a12.png,">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Alerts Front-End Template</h3>
           <p class="project-description">Mobile-first alert system template with tracking and responsive design.</p>
           <div class="tech-stack">
@@ -466,7 +598,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 6 -->
+        <div class="project-card" data-images="images/cjp/cjp1.png,images/cjp/cjp2.png,images/cjp/cjp3.png,images/cjp/cjp4.png,images/cjp/cjp5.png,">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">CJP Food & Delicacies</h3>
           <p class="project-description">E-commerce site for food business with menu, inventory, and automated ordering.</p>
           <div class="tech-stack">
@@ -479,7 +618,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 7 -->
+        <div class="project-card" data-images="https://via.placeholder.com/800x500/3282b8/ffffff?text=Bacoor+Online+Services+1">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Bacoor Online Services</h3>
           <p class="project-description">Public service portal providing accessible online government services.</p>
           <div class="tech-stack">
@@ -492,7 +638,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 8 -->
+        <div class="project-card" data-images="images/camts-ios/cios1.png,images/camts-ios/cios2.png,images/camts-ios/cios3.png,images/camts-ios/cios4.png,images/camts-ios/cios5.png,images/camts-ios/cios6.png,images/camts-ios/cios7.png,images/camts-ios/cios8.png,images/camts-ios/cios9.png">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">CAMTS IOS Template</h3>
           <p class="project-description">Mobile App, Point-of-sale and inventory system with real-time reporting.</p>
           <div class="tech-stack">
@@ -506,7 +659,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 9 -->
+        <div class="project-card" data-images="https://via.placeholder.com/800x500/e94560/ffffff?text=CAMTS+Android+1">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">CAMTS Android App</h3>
           <p class="project-description">Mobile App, Point-of-sale and inventory system with real-time reporting.</p>
           <div class="tech-stack">
@@ -518,7 +678,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 10 -->
+        <div class="project-card" data-images="images/camts/c1.png,images/camts/c2.png,images/camts/c3.png,images/camts/c4.png,images/camts/c5.png,images/camts/c6.png,images/camts/c7.png,images/camts/c8.png,images/camts/c9.png,">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">CAMTS POS System</h3>
           <p class="project-description">Point-of-sale and inventory system with real-time reporting.</p>
           <div class="tech-stack">
@@ -532,7 +699,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 11 -->
+        <div class="project-card" data-images="https://via.placeholder.com/800x500/0f4c75/ffffff?text=Aquaponics+1,https://via.placeholder.com/800x500/0f4c75/ffffff?text=Aquaponics+2">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Smart Aquaponics System (Thesis)</h3>
           <p class="project-description">IoT-based aquaponics automation with real-time monitoring and mobile dashboard.</p>
           <div class="tech-stack">
@@ -546,7 +720,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 12 -->
+        <div class="project-card" data-images="https://via.placeholder.com/800x500/e94560/ffffff?text=Church+Registry+1">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Church Registry Database</h3>
           <p class="project-description">Excel-based membership, baptism, and attendance tracking system.</p>
           <div class="tech-stack">
@@ -556,7 +737,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 13 -->
+        <div class="project-card" data-images="https://via.placeholder.com/800x500/3282b8/ffffff?text=Multimedia+1">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Multimedia & Design Portfolio</h3>
           <p class="project-description">Video presentations, educational content, and visual materials for events.</p>
           <div class="tech-stack">
@@ -566,7 +754,14 @@
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Project 14 -->
+        <div class="project-card" data-images="https://via.placeholder.com/800x500/0f4c75/ffffff?text=Brand+Identity+1">
+          <div class="project-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <h3 class="project-title">Brand Identity Design</h3>
           <p class="project-description">Logo design, business cards, and corporate identity packages.</p>
           <div class="tech-stack">
@@ -577,6 +772,8 @@
         </div>
 
       </div>
+
+      <div class="pagination" id="pagination"></div>
     </div>
   </section>
 
@@ -621,7 +818,7 @@
   </footer>
 
   <script>
-    // Particles
+    // Particles background
     function createParticles() {
       const container = document.getElementById('bgAnimation');
       for (let i = 0; i < 60; i++) {
@@ -639,7 +836,7 @@
       document.getElementById('navLinks').classList.toggle('active');
     });
 
-    // Smooth Scrolling + Close Mobile Menu
+    // Smooth scrolling + close mobile menu
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -650,6 +847,96 @@
       });
     });
 
+    // Carousel & Pagination
+    const projectsPerPage = 6;
+    const projectCards = document.querySelectorAll('.project-card');
+    const totalPages = Math.ceil(projectCards.length / projectsPerPage);
+    const paginationContainer = document.getElementById('pagination');
+
+    // Initialize each carousel
+    projectCards.forEach(card => {
+      const imagesStr = card.getAttribute('data-images') || '';
+      const images = imagesStr.split(',').map(s => s.trim()).filter(s => s);
+      if (images.length === 0) return;
+
+      const carousel = card.querySelector('.carousel-images');
+      const dotsContainer = card.querySelector('.carousel-dots');
+      let currentIndex = 0;
+
+      // Create images
+      images.forEach((src, i) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Project screenshot ${i + 1}`;
+        carousel.appendChild(img);
+
+        // Dots
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      // Navigation buttons
+      card.querySelector('.carousel-prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateCarousel();
+      });
+
+      card.querySelector('.carousel-next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+      });
+
+      function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        card.querySelectorAll('.dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+
+      function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+      }
+
+      // Hide nav if only one image
+      if (images.length <= 1) {
+        card.querySelectorAll('.carousel-nav, .carousel-dots').forEach(el => el.style.display = 'none');
+      }
+    });
+
+    // Pagination logic
+    function showPage(page) {
+      projectCards.forEach((card, index) => {
+        const start = (page - 1) * projectsPerPage;
+        const end = page * projectsPerPage;
+        card.classList.toggle('visible', index >= start && index < end);
+      });
+
+      document.querySelectorAll('.page-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i + 1 === page);
+      });
+    }
+
+    // Create pagination buttons
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement('button');
+      btn.classList.add('page-btn');
+      btn.textContent = i;
+      if (i === 1) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        showPage(i);
+        window.scrollTo({ top: document.getElementById('projects').offsetTop - 100, behavior: 'smooth' });
+      });
+      paginationContainer.appendChild(btn);
+    }
+
+    // Initial page
+    showPage(1);
+
+    // Start particles
     createParticles();
   </script>
 </body>
