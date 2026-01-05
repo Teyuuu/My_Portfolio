@@ -215,7 +215,7 @@
       transition: all 0.4s;
       position: relative;
       overflow: hidden;
-      display: none; /* Hidden by default, shown via JS */
+      display: none;
     }
 
     .project-card.visible {
@@ -399,11 +399,317 @@
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
+    /* CHATBOT STYLES */
+    .chat-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #3282b8, #e94560);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(50, 130, 184, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+
+    .chat-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(50, 130, 184, 0.7);
+    }
+
+    .chat-button i {
+      font-size: 24px;
+      color: white;
+    }
+
+    .chat-button.active i.fa-message {
+      display: none;
+    }
+
+    .chat-button.active i.fa-times {
+      display: block;
+    }
+
+    .chat-button i.fa-times {
+      display: none;
+    }
+
+    .chat-container {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 380px;
+      height: 550px;
+      background: var(--secondary);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 1001;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-container.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      padding: 1.2rem;
+      border-radius: 20px 20px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #3282b8, #e94560);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .chat-header-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .chat-header-info p {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--highlight);
+      border-radius: 10px;
+    }
+
+    .message {
+      display: flex;
+      gap: 0.8rem;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.user {
+      flex-direction: row-reverse;
+    }
+
+    .message-avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #3282b8, #e94560);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .message.user .message-avatar {
+      background: linear-gradient(45deg, #e94560, #3282b8);
+    }
+
+    .message-content {
+      background: var(--card);
+      padding: 0.8rem 1rem;
+      border-radius: 15px;
+      max-width: 70%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .message.user .message-content {
+      background: linear-gradient(45deg, #3282b8, #0f4c75);
+      border: none;
+    }
+
+    .message-content p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .message-time {
+      font-size: 0.7rem;
+      opacity: 0.5;
+      margin-top: 0.3rem;
+    }
+
+    .quick-replies {
+      padding: 0 1.5rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .quick-reply-btn {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text);
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quick-reply-btn:hover {
+      background: var(--highlight);
+      border-color: var(--highlight);
+      transform: translateY(-2px);
+    }
+
+    .chat-input {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      padding: 0.8rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .chat-input input:focus {
+      border-color: var(--highlight);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .send-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #3282b8, #e94560);
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(50, 130, 184, 0.5);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.5rem 0;
+    }
+
+    .typing-indicator span {
+      width: 8px;
+      height: 8px;
+      background: var(--highlight);
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+
     @media (max-width: 768px) {
       .about-content { grid-template-columns: 1fr; text-align: center; }
       .hero-subtitle { font-size: 1.2rem; }
       .section-title { font-size: 2.2rem; }
       .project-carousel { height: 180px; }
+      
+      .chat-container {
+        width: calc(100vw - 30px);
+        height: calc(100vh - 150px);
+        right: 15px;
+        bottom: 100px;
+      }
+
+      .chat-button {
+        right: 15px;
+        bottom: 20px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -836,6 +1142,49 @@
     </div>
   </footer>
 
+  <!-- CHATBOT -->
+  <button class="chat-button" id="chatButton">
+    <i class="fas fa-message"></i>
+    <i class="fas fa-times"></i>
+  </button>
+
+  <div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+      <div class="chat-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="chat-header-info">
+        <h3>Tim's Assistant</h3>
+        <p><span class="status-dot"></span>Online</p>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="message-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+          <p>Hi! 👋 I'm Timothy's virtual assistant. I can help you learn about his projects, skills, and experience. What would you like to know?</p>
+          <div class="message-time" id="initialTime"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-replies" id="quickReplies">
+      <button class="quick-reply-btn" data-reply="projects">View Projects</button>
+      <button class="quick-reply-btn" data-reply="skills">Tech Skills</button>
+      <button class="quick-reply-btn" data-reply="contact">Contact Info</button>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button class="send-btn" id="sendBtn">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
   <script>
     // Particles background
     function createParticles() {
@@ -957,6 +1306,147 @@
 
     // Start particles
     createParticles();
+
+    // ============ CHATBOT FUNCTIONALITY ============
+    const chatButton = document.getElementById('chatButton');
+    const chatContainer = document.getElementById('chatContainer');
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const quickReplies = document.getElementById('quickReplies');
+
+    // Set initial time
+    document.getElementById('initialTime').textContent = getCurrentTime();
+
+    // Toggle chat
+    chatButton.addEventListener('click', () => {
+      chatButton.classList.toggle('active');
+      chatContainer.classList.toggle('active');
+      if (chatContainer.classList.contains('active')) {
+        userInput.focus();
+      }
+    });
+
+    // Send message
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    // Quick replies
+    quickReplies.addEventListener('click', (e) => {
+      if (e.target.classList.contains('quick-reply-btn')) {
+        const reply = e.target.getAttribute('data-reply');
+        userInput.value = e.target.textContent;
+        sendMessage();
+      }
+    });
+
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      addMessage(message, 'user');
+      userInput.value = '';
+
+      setTimeout(() => {
+        showTypingIndicator();
+        setTimeout(() => {
+          hideTypingIndicator();
+          const response = getResponse(message.toLowerCase());
+          addMessage(response, 'bot');
+        }, 1000);
+      }, 300);
+    }
+
+    function addMessage(text, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${sender}`;
+
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar';
+      avatar.innerHTML = sender === 'user' ? '<i class="fas fa-user"></i>' : '<i class="fas fa-robot"></i>';
+
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      content.innerHTML = `
+        <p>${text}</p>
+        <div class="message-time">${getCurrentTime()}</div>
+      `;
+
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(content);
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+      const typing = document.createElement('div');
+      typing.className = 'message bot';
+      typing.id = 'typing';
+      typing.innerHTML = `
+        <div class="message-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+          <div class="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      `;
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+    }
+
+    function getCurrentTime() {
+      const now = new Date();
+      return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function getResponse(message) {
+      // Knowledge base
+      const responses = {
+        projects: "Timothy has built 14+ projects including:<br><br>🌐 <strong>Church Website</strong> - Full internal system linking main site with academy and college portals<br>🛒 <strong>Canvas & Cotton</strong> - Complete e-commerce platform with real-time dashboard<br>📱 <strong>CAMTS POS</strong> - Point-of-sale system with inventory management<br>🔧 <strong>Smart Aquaponics</strong> - IoT-based automation system (Thesis project)<br><br>Which project would you like to know more about?",
+        
+        skills: "Timothy's tech stack includes:<br><br><strong>Frontend:</strong> HTML5, CSS3, JavaScript, TypeScript, Bootstrap<br><strong>Backend:</strong> Python (Flask), PHP (Laravel), MySQL, Supabase<br><strong>DevOps:</strong> Server Setup, Git, GitHub<br><strong>IoT:</strong> Arduino, NodeMCU, Firebase<br><strong>Design:</strong> Canva, CapCut, Adobe Express<br><br>He's a full-stack developer with IoT expertise!",
+        
+        contact: "You can reach Timothy through:<br><br>📧 <strong>Email:</strong> terezavilla70@gmail.com<br>💼 <strong>LinkedIn:</strong> <a href='https://www.linkedin.com/in/timothy-villa-b06450280/' target='_blank' style='color: #3282b8;'>timothy-villa</a><br>💻 <strong>GitHub:</strong> <a href='https://github.com/Teyuuu' target='_blank' style='color: #3282b8;'>Teyuuu</a><br><br>Feel free to connect with him!",
+        
+        experience: "Timothy is a Computer Science graduate with hands-on experience in:<br><br>✅ Full-stack web development<br>✅ E-commerce platforms<br>✅ Church management systems<br>✅ IoT & automation<br>✅ Database design & optimization<br>✅ UI/UX design<br><br>He's passionate about building real-world solutions that make an impact!",
+        
+        education: "Timothy holds a <strong>Bachelor's degree in Computer Science</strong>. During his studies, he developed a Smart Aquaponics System as his thesis project, combining IoT, automation, and web development skills.",
+
+        about: "Timothy Villa is a passionate Computer Science graduate who specializes in full-stack development, IoT systems, and automation. He's built 14+ projects ranging from church management systems to e-commerce platforms. When he's not coding, he enjoys creating multimedia content and designing brand identities!",
+
+        resume: "You can download Timothy's full resume here: <a href='VILLA-CV.pdf' target='_blank' style='color: #3282b8; font-weight: 600;'>Download Resume (PDF)</a><br><br>It includes detailed information about his experience, education, and all projects!"
+      };
+
+      // Keyword matching
+      if (message.includes('project')) return responses.projects;
+      if (message.includes('skill') || message.includes('tech')) return responses.skills;
+      if (message.includes('contact') || message.includes('email') || message.includes('reach')) return responses.contact;
+      if (message.includes('experience') || message.includes('work')) return responses.experience;
+      if (message.includes('education') || message.includes('degree') || message.includes('study')) return responses.education;
+      if (message.includes('about') || message.includes('who')) return responses.about;
+      if (message.includes('resume') || message.includes('cv')) return responses.resume;
+      if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+        return "Hello! 👋 I'm here to help you learn about Timothy's work. You can ask me about his projects, skills, experience, or contact information!";
+      }
+      if (message.includes('thank')) {
+        return "You're welcome! 😊 Feel free to ask if you have any other questions about Timothy!";
+      }
+
+      // Default response
+      return "I can help you with:<br><br>• Timothy's projects<br>• Technical skills<br>• Contact information<br>• Work experience<br>• Education background<br>• Resume download<br><br>What would you like to know?";
+    }
   </script>
+
 </body>
 </html>
