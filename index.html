@@ -454,14 +454,18 @@
         </div>
 
         <!-- Certificate 4 -->
-        <div class="cert-card">
-          <img
-            src="images/certs/intro0.png, images/certs/set-com-ser1.png, images/certs/set-com-net2.png, images/certs/ins-com3.png, images/certs/maintain4.png"
-            alt="Certificate" class="cert-img">
+        <div class="cert-card"
+          data-images="images/certs/intro0.png, images/certs/set-com-ser-1.png, images/certs/set-com-net2.png, images/certs/ins-com3.png, images/certs/maintain4.png">
+          <div class="cert-carousel">
+            <div class="carousel-images"></div>
+            <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
           <div class="cert-content">
             <div class="cert-issuer"><i class="fas fa-certificate"></i> Tesda Online Programs</div>
             <h3>Computer Systems Servicing NC II Modules</h3>
-            <div class="cert-date">Issued: January 28, 2026</div>
+            <div class="cert-date">Issued: July 26-29, 2025</div>
           </div>
         </div>
 
@@ -570,6 +574,27 @@
       <button class="send-btn" id="sendBtn">
         <i class="fas fa-paper-plane"></i>
       </button>
+    </div>
+  </div>
+
+  <!-- Global Image/Project Modal -->
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <div class="modal-card">
+      <div class="modal-image-container">
+        <button class="modal-nav modal-prev" id="modalPrev" aria-label="Previous image"><i
+            class="fas fa-chevron-left"></i></button>
+        <img class="modal-content" id="fullImage" alt="Full size view">
+        <button class="modal-nav modal-next" id="modalNext" aria-label="Next image"><i
+            class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="modal-info">
+        <h3 id="modalTitle"></h3>
+        <p id="modalSubtitle" style="color: var(--highlight); margin-bottom: 0.5rem;"></p>
+        <p id="modalDescription" style="margin-bottom: 1rem; opacity: 0.9;"></p>
+        <div id="modalTechStack" class="tech-stack"></div>
+        <div id="modalLinks" class="project-links" style="margin-top: 1rem;"></div>
+      </div>
     </div>
   </div>
 
