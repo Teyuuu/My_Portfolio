@@ -107,10 +107,21 @@
       <p
         style="text-align: center; color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto;">
         Showcasing my best work across web development, e-commerce, IoT, and full-stack applications</p>
+      <div class="project-tabs" id="projectTabs">
+        <button class="tab-btn active" data-filter="all">All Projects</button>
+        <button class="tab-btn" data-filter="bacoor">Bacoor City Hall</button>
+        <button class="tab-btn" data-filter="church">Berean Bible Baptist Church</button>
+        <button class="tab-btn" data-filter="camts">Camts</button>
+        <button class="tab-btn" data-filter="cjp">CJP Food & Delicacies</button>
+        <button class="tab-btn" data-filter="canvas">Canvas & Cotton</button>
+        <button class="tab-btn" data-filter="thesis">Thesis</button>
+        <button class="tab-btn" data-filter="others">Others</button>
+      </div>
+
       <div class="projects-grid" id="projectsGrid">
 
         <!-- Project 1 -->
-        <div class="project-card visible"
+        <div class="project-card visible" data-client="church"
           data-images="images/church/1.png,images/church/2.png,images/church/3.png,images/church/4.png,images/church/5.png,images/church/6.png,images/church/7.png,images/church/8.png,images/church/9.png">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -132,7 +143,7 @@
           </div>
         </div>
 
-        <div class="project-card visible"
+        <div class="project-card visible" data-client="church"
           data-images="images/student/s1.png,images/student/s2.png,images/student/s3.png,images/student/s4.png,images/student/s5.png,images/student/s6.png,images/student/s7.png,images/student/s8.png,images/student/s9.png,images/student/s10.png,">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -153,7 +164,7 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="project-card visible"
+        <div class="project-card visible" data-client="canvas"
           data-images="images/canvas/cc1.png,images/canvas/cc2.png,images/canvas/cc3.png,images/canvas/cc4.png,images/canvas/cc5.png,images/canvas/cc6.png,images/canvas/cc7.png,images/canvas/cc8.png,images/canvas/cc9.png,images/canvas/cc10.png">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -177,7 +188,7 @@
         </div>
 
         <!-- Project 3 -->
-        <div class="project-card visible"
+        <div class="project-card visible" data-client="bacoor"
           data-images="images/qr/1.png,images/qr/2.png,images/qr/3.png,images/qr/4.png,images/qr/5.png,images/qr/6.png,images/qr/7.png,images/qr/8.png,images/qr/9.png,images/qr/10.png,images/qr/11.png,images/qr/12.png">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -199,7 +210,7 @@
         </div>
 
         <!-- Project 4 -->
-        <div class="project-card visible"
+        <div class="project-card visible" data-client="bacoor"
           data-images="images/emergency/e1.png,images/emergency/e2.png,images/emergency/e3.png">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -219,7 +230,7 @@
         </div>
 
         <!-- Project 5 -->
-        <div class="project-card visible"
+        <div class="project-card visible" data-client="bacoor"
           data-images="images/alerts/a1.png,images/alerts/a2.png,images/alerts/a3.png,images/alerts/a4.png,images/alerts/a5.png,images/alerts/a6.png,images/alerts/a7.png,images/alerts/a8.png,images/alerts/a9.png,images/alerts/a10.png,images/alerts/a11.png,images/alerts/a12.png,">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -239,7 +250,7 @@
         </div>
 
         <!-- Project 6 -->
-        <div class="project-card"
+        <div class="project-card" data-client="cjp"
           data-images="images/cjp/cjp1.png,images/cjp/cjp2.png,images/cjp/cjp3.png,images/cjp/cjp4.png,images/cjp/cjp5.png,">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -261,7 +272,7 @@
         </div>
 
         <!-- Project 7 -->
-        <div class="project-card"
+        <div class="project-card" data-client="bacoor"
           data-images="images/bos/1.png,images/bos/2.png,images/bos/3.png,images/bos/4.png,images/bos/5.png,images/bos/6.png,images/bos/7.png,images/bos/8.png">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -282,7 +293,7 @@
         </div>
 
         <!-- Project 8 -->
-        <div class="project-card"
+        <div class="project-card" data-client="camts"
           data-images="images/camts-ios/cios1.png,images/camts-ios/cios2.png,images/camts-ios/cios3.png,images/camts-ios/cios4.png,images/camts-ios/cios5.png,images/camts-ios/cios6.png,images/camts-ios/cios7.png,images/camts-ios/cios8.png,images/camts-ios/cios9.png">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -304,7 +315,7 @@
         </div>
 
         <!-- Project 9 -->
-        <div class="project-card"
+        <div class="project-card" data-client="camts"
           data-images="images/camts-android/1.jpg,images/camts-android/2.jpg,images/camts-android/3.jpg,images/camts-android/4.jpg,images/camts-android/5.jpg,images/camts-android/6.jpg,images/camts-android/7.jpg,images/camts-android/8.jpg,images/camts-android/9.jpg,">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -324,7 +335,7 @@
         </div>
 
         <!-- Project 10 -->
-        <div class="project-card"
+        <div class="project-card" data-client="camts"
           data-images="images/camts/c1.png,images/camts/c2.png,images/camts/c3.png,images/camts/c4.png,images/camts/c5.png,images/camts/c6.png,images/camts/c7.png,images/camts/c8.png,images/camts/c9.png,">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -346,7 +357,7 @@
         </div>
 
         <!-- Project 11 -->
-        <div class="project-card"
+        <div class="project-card" data-client="thesis"
           data-images="images/smart/1.jpg,images/smart/2.jpg,images/smart/3.mp4,images/smart/4.jpg,images/smart/5.jpg,images/smart/6.jpg,images/smart/7.jpg">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -369,7 +380,7 @@
         </div>
 
         <!-- Project 12 -->
-        <div class="project-card"
+        <div class="project-card" data-client="church"
           data-images="https://via.placeholder.com/800x500/e94560/ffffff?text=Church+Registry+1">
           <div class="project-carousel">
             <div class="carousel-images"></div>
@@ -387,7 +398,7 @@
         </div>
 
         <!-- Project 13 -->
-        <div class="project-card" data-images="https://via.placeholder.com/800x500/3282b8/ffffff?text=Multimedia+1">
+        <div class="project-card" data-client="others" data-images="https://via.placeholder.com/800x500/3282b8/ffffff?text=Multimedia+1">
           <div class="project-carousel">
             <div class="carousel-images"></div>
             <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
@@ -404,7 +415,7 @@
         </div>
 
         <!-- Project 14 -->
-        <div class="project-card" data-images="https://via.placeholder.com/800x500/0f4c75/ffffff?text=Brand+Identity+1">
+        <div class="project-card" data-client="camts" data-images="https://via.placeholder.com/800x500/0f4c75/ffffff?text=Brand+Identity+1">
           <div class="project-carousel">
             <div class="carousel-images"></div>
             <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
