@@ -47,12 +47,22 @@ allCarouselCards.forEach(card => {
 
   let currentIndex = 0;
 
-  // Create images
+  // Create images or videos
   images.forEach((src, i) => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = `Screenshot ${i + 1}`;
-    carousel.appendChild(img);
+    let media;
+    if (src.toLowerCase().endsWith('.mp4')) {
+      media = document.createElement('video');
+      media.src = src;
+      media.muted = true;
+      media.loop = true;
+      media.playsInline = true;
+      media.autoplay = true; // Auto-play muted video in carousel
+    } else {
+      media = document.createElement('img');
+      media.src = src;
+      media.alt = `Screenshot ${i + 1}`;
+    }
+    carousel.appendChild(media);
 
     if (dotsContainer) {
       const dot = document.createElement('div');
@@ -175,6 +185,7 @@ createParticles();
 // ============ MODAL FUNCTIONALITY ============
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('fullImage');
+const modalVideo = document.getElementById('fullVideo');
 const modalTitle = document.getElementById('modalTitle');
 const modalSubtitle = document.getElementById('modalSubtitle');
 const modalDescription = document.getElementById('modalDescription');
@@ -196,10 +207,12 @@ function openModal(data) {
     modal.classList.remove('modal-minimal');
   }
 
-  modalImg.src = data.imgSrc;
   modalTitle.innerText = data.title;
   modalSubtitle.innerText = data.subtitle;
   modalDescription.innerText = data.description || '';
+
+  // Initial media setup
+  updateModalImage(data.imgSrc);
 
   // Handle Tech Stack
   modalTechStack.innerHTML = '';
@@ -239,8 +252,20 @@ function openModal(data) {
   }
 }
 
-function updateModalImage() {
-  modalImg.src = currentModalImages[currentModalIndex];
+function updateModalImage(specificSrc) {
+  const src = specificSrc || currentModalImages[currentModalIndex];
+  
+  if (src.toLowerCase().endsWith('.mp4')) {
+    modalImg.style.display = 'none';
+    modalVideo.style.display = 'block';
+    modalVideo.src = src;
+    modalVideo.play().catch(err => console.log("Video play failed:", err));
+  } else {
+    modalVideo.style.display = 'none';
+    modalVideo.pause();
+    modalImg.style.display = 'block';
+    modalImg.src = src;
+  }
 }
 
 modalPrev.addEventListener('click', (e) => {
@@ -255,10 +280,10 @@ modalNext.addEventListener('click', (e) => {
   updateModalImage();
 });
 
-// Add click listeners to all project and certificate images
+// Add click listeners to all project and certificate media
 document.addEventListener('click', (e) => {
   const card = e.target.closest('.project-card, .cert-card');
-  if (card && e.target.tagName === 'IMG') {
+  if (card && (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO')) {
     const isProject = card.classList.contains('project-card');
 
     // Extract info
@@ -276,18 +301,18 @@ document.addEventListener('click', (e) => {
       links.push({ url: link.href, html: link.innerHTML });
     });
 
-    // Images
+    // Media sources
     const imagesStr = card.getAttribute('data-images') || '';
     let images = [];
     if (imagesStr) {
       images = imagesStr.split(',').map(s => s.trim()).filter(s => s);
     } else {
-      images = [e.target.src];
+      images = [e.target.getAttribute('src')];
     }
     const index = images.indexOf(e.target.getAttribute('src')) === -1 ? 0 : images.indexOf(e.target.getAttribute('src'));
 
     openModal({
-      imgSrc: e.target.src,
+      imgSrc: e.target.getAttribute('src'),
       title,
       subtitle,
       description,
@@ -300,27 +325,29 @@ document.addEventListener('click', (e) => {
   }
 });
 
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  modalVideo.pause();
+  modalVideo.src = ""; // Clear src to stop loading
+}
+
 // Close modal logic
 if (closeBtn) {
-  closeBtn.onclick = function () {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
-  }
+  closeBtn.onclick = closeModal;
 }
 
 // Close when clicking outside the card
 modal.onclick = function (e) {
   if (e.target === modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    closeModal();
   }
 }
 
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modal.classList.contains('active')) {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    closeModal();
   } else if (modal.classList.contains('active')) {
     if (e.key === 'ArrowLeft') modalPrev.click();
     if (e.key === 'ArrowRight') modalNext.click();
